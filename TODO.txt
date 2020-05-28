@@ -1,0 +1,4 @@
+- Lemmers et al. Feature space
+- Auto add feature spaces/algo/measurement types
+- Parallel computing support
+- reload data from mat file
