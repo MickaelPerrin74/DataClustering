@@ -1,4 +1,4 @@
-# DataClustering
+# Data Clustering Tool
  This graphical tool is designed for the clustering of univariate measurements. This allows for the use of various feature space contruction methods, dimentionality reduction methods and clustering algorithms. 
  
  Details on how to run the app: 
