@@ -21,4 +21,3 @@ for i = 1:app.Data_struct.N_measurements
     end
     
 end
-

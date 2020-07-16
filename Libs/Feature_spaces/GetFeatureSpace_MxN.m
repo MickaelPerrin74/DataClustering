@@ -17,18 +17,28 @@ end
 
 for i = 1:app.Data_struct.N_measurements
         
+    tmp_X = app.Data_struct.Data{i}(:,1);
+    tmp_Y = app.Data_struct.Data{i}(:,2);
+    
+    idx =  tmp_X > app.ROIXmin.Value & tmp_X < app.ROIXmax.Value & tmp_Y > app.ROIYmin.Value & tmp_Y < app.ROIYmax.Value;
+    
+    tmp_X = tmp_X(idx);
+    tmp_Y = tmp_Y(idx);
+    
+    if sum(idx) ~= 0
     if strcmp(app.XscaleDropDown.Value, 'Linear') && strcmp(app.YscaleDropDown.Value, 'Linear')
-        tmp = hist2(app.Data_struct.Data{i}(:,1), app.Data_struct.Data{i}(:,2),  X_array, Y_array);
+        Histo = hist2(tmp_X, tmp_Y, X_array, Y_array);
     end
     if strcmp(app.XscaleDropDown.Value, 'Linear') && strcmp(app.YscaleDropDown.Value, 'Log')
-        tmp = hist2(app.Data_struct.Data{i}(:,1), log10(app.Data_struct.Data{i}(:,2)),  X_array, Y_array);
+        Histo = hist2(tmp_X, log10(tmp_Y),  X_array, Y_array);
     end
     if strcmp(app.XscaleDropDown.Value, 'Log') && strcmp(app.YscaleDropDown.Value, 'Linear')
-        tmp = hist2(log10(app.Data_struct.Data{i}(:,1)), app.Data_struct.Data{i}(:,2),  X_array, Y_array);
+        Histo = hist2(log10(tmp_X), tmp_Y,  X_array, Y_array);
     end
     if strcmp(app.XscaleDropDown.Value, 'Log') && strcmp(app.YscaleDropDown.Value, 'Log')
-        tmp = hist2(log10(app.Data_struct.Data{i}(:,1)), log10(app.Data_struct.Data{i}(:,2)),  X_array, Y_array);
+        Histo = hist2(log10(tmp_X), log10(tmp_Y),  X_array, Y_array);
     end
-    output(i,:) = tmp(:)';
+    output(i,:) = Histo(:)';
+    end
     
 end

@@ -20,7 +20,7 @@ switch CA
             try ClusterX(:,l) = GetClusters_kmedoids(feature_space, param); catch LE; disp(LE); end
         end
         
-    case 'Gust. - Kessel'
+    case 'Gust. -Kessel'
         for l = 1:N_clusters
             param.N_clusters = app.Data_struct.Clusters(l);
             try ClusterX(:,l) = GetClusters_GK(feature_space, param); catch LE; disp(LE); end
@@ -39,45 +39,14 @@ switch CA
             try ClusterX(:,l) = GetClusters_FCM(feature_space, param); catch LE; disp(LE); end
         end
         
-    case 'Graph av. link.'
-        for l = 1:N_clusters
-            param.method = 'average';
-            param.N_clusters = app.Data_struct.Clusters(l);
-            try ClusterX(:,l) = GetClusters_GAC(feature_space, param); catch LE; disp(LE); end
-        end
-        
-    case 'Graph deg. link.'
-        for l = 1:N_clusters
-            param.method = 'degree';
-            param.N_clusters = app.Data_struct.Clusters(l);
-            try ClusterX(:,l) = GetClusters_GAC(feature_space, param); catch LE; disp(LE); end
-        end
-        
-    case 'Spectral (S&M)'
-        param.ClusteringType = 2;
-        param.SimGraphType = 3;
-        for l = 1:N_clusters
-            param.N_clusters = app.Data_struct.Clusters(l);
-            try ClusterX(:,l) = GetClusters_spectral(feature_space, param); catch LE; disp(LE); end
-        end
-        
-    case 'Spectral (J&W)'
-        param.ClusteringType = 3;
-        param.SimGraphType = 3;
-        for l = 1:N_clusters
-            param.N_clusters = app.Data_struct.Clusters(l);
-            try ClusterX(:,l) = GetClusters_spectral(feature_space, param); catch LE; disp(LE); end
-        end
-        
-        
-    case 'Self. Org. Maps'
+    case 'SOM'
         param.algo = 'linkdist';
         for l = 1:N_clusters
             param.N_clusters = app.Data_struct.Clusters(l);
             try ClusterX(:,l) = GetClusters_SOM(feature_space, param); catch LE; disp(LE); end
         end
         
-    case 'Gauss. Mixt. Mod.'
+    case 'GMM'
         for l = 1:N_clusters
             param.N_clusters = app.Data_struct.Clusters(l);
             try ClusterX(:,l) = GetClusters_GMM(feature_space, param); catch LE; disp(LE); end
@@ -98,37 +67,63 @@ switch CA
             ClusterX(:,l) = GetClusters_hier(Z, param);
         end
         
-        
-    case 'Density'
-        ClusterX = GetClusters_density(feature_space);
-        
-    case 'Affinity propagation'
-        param.type = 1; % Euclidean distance for similarity matrix
+    case 'Spectral (S&M)'
+        param.ClusteringType = 2;
+        param.SimGraphType = 3;
         for l = 1:N_clusters
             param.N_clusters = app.Data_struct.Clusters(l);
-            try ClusterX(:,l) = GetClusters_AP(feature_space, param); catch LE; disp(LE); end
+            try ClusterX(:,l) = GetClusters_spectral(feature_space, param); catch LE; disp(LE); end
         end
         
+    case 'Spectral (J&W)'
+        param.ClusteringType = 3;
+        param.SimGraphType = 3;
+        for l = 1:N_clusters
+            param.N_clusters = app.Data_struct.Clusters(l);
+            try ClusterX(:,l) = GetClusters_spectral(feature_space, param); catch LE; disp(LE); end
+        end
+        
+    case 'Graph av. link.'
+        for l = 1:N_clusters
+            param.method = 'average';
+            param.N_clusters = app.Data_struct.Clusters(l);
+            try ClusterX(:,l) = GetClusters_GAC(feature_space, param); catch LE; disp(LE); end
+        end
+        
+    case 'Graph deg. link'
+        for l = 1:N_clusters
+            param.method = 'degree';
+            param.N_clusters = app.Data_struct.Clusters(l);
+            try ClusterX(:,l) = GetClusters_GAC(feature_space, param); catch LE; disp(LE); end
+        end   
+     
     case 'Custom'
         for l = 1:N_clusters
             param.N_clusters = app.Data_struct.Clusters(l);
             try ClusterX(:,l) = GetClusters_Custom(feature_space, param); catch LE; disp(LE); end
         end
         
-        %     case 'Hier. Max. Like.'
-        %         for l = 1:N_clusters
-        %             param.N_clusters = app.Data_struct.Clusters(l);
-        %             try ClusterX(:,l) = GetClusters_HML(feature_space, param); catch LE; disp(LE); end
-        %         end
+%     case 'Hier. Max. Like.'
+%         for l = 1:N_clusters
+%             param.N_clusters = app.Data_struct.Clusters(l);
+%             try ClusterX(:,l) = GetClusters_HML(feature_space, param); catch LE; disp(LE); end
+%         end
         
-        %     case 'CURE'
-        %         param.c = 5;
-        %         param.alpha = 1;
-        %         for l = 1:N_clusters
-        %             param.N_clusters = app.Data_struct.Clusters(l);
-        %             try ClusterX(:,l) = GetClusters_CURE(feature_space, param); catch LE; disp(LE); end
-        %         end
-        %
+%     case 'CURE'
+%         param.c = 5;
+%         param.alpha = 1;
+%         for l = 1:N_clusters
+%             param.N_clusters = app.Data_struct.Clusters(l);
+%             try ClusterX(:,l) = GetClusters_CURE(feature_space, param); catch LE; disp(LE); end
+%         end
+%         
+%     case 'Affinity propagation'
+%         param.type = 1; % Euclidean distance for similarity matrix
+%         for l = 1:N_clusters
+%             param.N_clusters = app.Data_struct.Clusters(l);
+%             try ClusterX(:,l) = GetClusters_AP(feature_space, param); catch LE; disp(LE); end
+%         end
         
-        
+    case 'Density'
+        ClusterX = GetClusters_density(feature_space);
 end

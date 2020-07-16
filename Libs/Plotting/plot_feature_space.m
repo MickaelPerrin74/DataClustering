@@ -16,7 +16,8 @@ set(fig,'position',figure_size)
 colormap(parula);
 
 %% make scatter plot
-if app.Data_struct.nDim > 3
+[~, nDim] = size(feature_space);
+if nDim > 3
     feature_space = pca(feature_space, 3);
 end
 
