@@ -15,4 +15,4 @@ Note 1: All analysis is saved in a \*.mat file in the output directory. It conta
 
 Note 2: When numbering your files, use leading zeros if the order matters. For speeds reasons, Matlab collects all files present in the directory, sorted alphabetically. Measurements labelled file1, file2… file100 will be sorted as follows: file1, file10, file100, file2. This is not the case for the 'MCBJ Delft' measurement type, but that makes generating the file list much slower. 
 
-When using this software for publication, please cite the article '**Universal approach for unsupervised classification of univariate data**' by Maria El Abbassi, Jan Overbeck, Oliver Braun, Michel Calame, Herre S.J. van der Zant, Mickael L. Perrin. https://arxiv.org/abs/2004.14271
+When using this software for publication, please cite the article '**Benchmark and application of unsupervised classification approaches for univariate data**' by Maria El Abbassi, Jan Overbeck, Oliver Braun, Michel Calame, Herre S.J. van der Zant, Mickael L. Perrin. https://arxiv.org/abs/2004.14271
